@@ -164,6 +164,7 @@ function deleteItems(event) {
    moveElementsMap.clear()
    setLocalStorage(currentList.key, currentList.data)
    anableEvents(allListWrapperElements)
+   disabledEvents(allBtns, false)
 }
 
 function updateLists(currentList, updateList) {
@@ -177,7 +178,7 @@ function updateLists(currentList, updateList) {
 
    moveElementsMap.clear()
    anableEvents(allListWrapperElements)
-   disabledEvents(allBtns)
+   disabledEvents(allBtns, false)
 }
 
 function updateAddItems(list, item) {
