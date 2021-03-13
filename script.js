@@ -81,31 +81,49 @@ function dispayItemsOnList(element, array) {
 
 function createItem(container, content, id) {
    let itemElement = document.createElement('div')
+   let linkElement = document.createElement('a')
+   let checkBox = document.createElement('input')
 
-   itemElement.textContent = content
+
+   linkElement.textContent = content
+   linkElement.setAttribute('href', content)
+   linkElement.setAttribute('target', '_blank')
+
+   checkBox.setAttribute('type', 'checkbox')
+   checkBox.setAttribute('onclick', `onSelectItem(event)`)
+   checkBox.setAttribute('data-content', content)
+   checkBox.setAttribute('data-uniqe-id', id)
+   checkBox.setAttribute('data-parentid', container.id)
+
    itemElement.classList.add('list-item')
-   itemElement.setAttribute('onclick', `onSelectItem(event)`)
-   itemElement.setAttribute('data-content', content)
    itemElement.setAttribute('title', content)
-   itemElement.setAttribute('data-uniqe-id', id)
-   itemElement.setAttribute('data-parentid', container.id)
+   itemElement.appendChild(linkElement)
+   itemElement.appendChild(checkBox)
 
    container.appendChild(itemElement)
 }
 
 
 function onSelectItem(event) {
+   // console.log(event.target)
    let currentListDataId = event.target.getAttribute('data-parentid')
    let currentContent = event.target.getAttribute('data-content')
    let currentItemId = event.target.getAttribute('data-uniqe-id')
-   event.target.classList.toggle('active')
+   event.target.parentElement.classList.toggle('active')
+
 
    if (moveElementsMap.has(currentItemId)) {
       moveElementsMap.delete(currentItemId)
    } else {
-      moveElementsMap.set(currentItemId, { currentContent: currentContent, html: event.target })
+      moveElementsMap.set(currentItemId, { currentContent: currentContent, html: event.target.parentElement })
    }
-
+   console.log('MOVE MAP: ', moveElementsMap)
+   console.log(`
+     'CURRENT LIST: ' ${currentListDataId}
+     'CURRENT CONTENT: ' ${currentContent}
+     'CURRENT ITEM ID: ' ${currentItemId}
+      `)
+   console.log('MAP: SIZE: ', moveElementsMap.size)
    currentListDataIdActive = moveElementsMap.size > 0 ? currentListDataId : null
 
    if (currentListDataIdActive) {
@@ -122,6 +140,8 @@ function moveNext(event) {
    let currentLstId = event.target.getAttribute('data-listId')
    let currentList = allActionsMap.get(currentLstId)
    let nextList = allActionsMap.get(currentList.nextKey)
+   console.log('NEXT LIST: ', nextList)
+   console.log('CURRENT LIST: ', currentList)
    updateLists(currentList, nextList)
 }
 
