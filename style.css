@@ -1,0 +1,144 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.btn, .form-control {
+  border-radius: 2px;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+body {
+  background-color: whitesmoke;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 0.5rem
+}
+
+.dislbled-events {
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+@media screen and (max-width: 1000px) {
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.5rem
+  }
+  .add-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .list-item {
+    max-width: 20rem !important;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .add-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .list-item {
+    max-width: 30rem !important;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .list-item {
+    max-width: 19rem !important;
+  }
+}
+
+.list {
+  max-height: 20rem;
+  overflow-x: hidden;
+}
+
+.list::-webkit-scrollbar {
+  width: 7px;
+}
+
+.list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.list::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.list-item {
+  padding: 0.5rem;
+  border-bottom: 1px solid rgb(228, 228, 228);
+  white-space: nowrap;
+  max-width: 15rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-item:hover {
+  background-color: whitesmoke;
+  cursor: pointer;
+}
+
+.list-item.active {
+  background-color: rgb(218, 218, 218);
+  cursor: pointer;
+}
+
+.add-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.add-form button {
+  border: none;
+  background-color: inherit;
+}
+
+.fa-plus-circle {
+  font-size: 20px;
+  color: rgb(15, 167, 134);
+}
+
+.add-form input {
+  width: 15rem;
+  margin-right: 1rem;
+}
+
+.list-btns {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.list-btns button {
+  border: none;
+  background-color: inherit;
+  opacity: 0.5;
+}
+
+.list-btns button:hover {
+  opacity: 1
+}
+
+.fa-chevron-left, .fa-chevron-right {
+  font-size: 18px;
+}
