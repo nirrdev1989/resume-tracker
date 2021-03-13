@@ -84,7 +84,6 @@ function createItem(container, content, id) {
    let linkElement = document.createElement('a')
    let checkBox = document.createElement('input')
 
-
    linkElement.textContent = content
    linkElement.setAttribute('href', content)
    linkElement.setAttribute('target', '_blank')
@@ -117,13 +116,13 @@ function onSelectItem(event) {
    } else {
       moveElementsMap.set(currentItemId, { currentContent: currentContent, html: event.target.parentElement })
    }
-   // console.log('MOVE MAP: ', moveElementsMap)
-   // console.log(`
-   //   'CURRENT LIST: ' ${currentListDataId}
-   //   'CURRENT CONTENT: ' ${currentContent}
-   //   'CURRENT ITEM ID: ' ${currentItemId}
-   //    `)
-   // console.log('MAP: SIZE: ', moveElementsMap.size)
+   console.log('MOVE MAP: ', moveElementsMap)
+   console.log(`
+     'CURRENT LIST: ' ${currentListDataId}
+     'CURRENT CONTENT: ' ${currentContent}
+     'CURRENT ITEM ID: ' ${currentItemId}
+      `)
+   console.log('MAP: SIZE: ', moveElementsMap.size)
    currentListDataIdActive = moveElementsMap.size > 0 ? currentListDataId : null
 
    if (currentListDataIdActive) {
@@ -211,7 +210,7 @@ function addCompanyLink() {
       content: linkInput.value
    }
 
-   createItem(toSendList.html, linkInput.value)
+   createItem(toSendList.html, linkInput.value, id)
    setLocalStorage(toSendList.key, toSendList.data)
    linkInput.value = ''
 }
