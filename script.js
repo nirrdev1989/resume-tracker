@@ -117,13 +117,13 @@ function onSelectItem(event) {
    } else {
       moveElementsMap.set(currentItemId, { currentContent: currentContent, html: event.target.parentElement })
    }
-   console.log('MOVE MAP: ', moveElementsMap)
-   console.log(`
-     'CURRENT LIST: ' ${currentListDataId}
-     'CURRENT CONTENT: ' ${currentContent}
-     'CURRENT ITEM ID: ' ${currentItemId}
-      `)
-   console.log('MAP: SIZE: ', moveElementsMap.size)
+   // console.log('MOVE MAP: ', moveElementsMap)
+   // console.log(`
+   //   'CURRENT LIST: ' ${currentListDataId}
+   //   'CURRENT CONTENT: ' ${currentContent}
+   //   'CURRENT ITEM ID: ' ${currentItemId}
+   //    `)
+   // console.log('MAP: SIZE: ', moveElementsMap.size)
    currentListDataIdActive = moveElementsMap.size > 0 ? currentListDataId : null
 
    if (currentListDataIdActive) {
@@ -140,8 +140,8 @@ function moveNext(event) {
    let currentLstId = event.target.getAttribute('data-listId')
    let currentList = allActionsMap.get(currentLstId)
    let nextList = allActionsMap.get(currentList.nextKey)
-   console.log('NEXT LIST: ', nextList)
-   console.log('CURRENT LIST: ', currentList)
+   // console.log('NEXT LIST: ', nextList)
+   // console.log('CURRENT LIST: ', currentList)
    updateLists(currentList, nextList)
 }
 
@@ -196,9 +196,9 @@ function updateRemoveItems(list, item) {
 
 
 function addCompanyLink() {
-   const linkInput = document.querySelector('#link-company').value
+   const linkInput = document.querySelector('#link-company')
 
-   if (linkInput.trim() === '') {
+   if (linkInput.value.trim() === '') {
       alert('Pass link')
       return
    }
@@ -207,11 +207,12 @@ function addCompanyLink() {
    let toSendList = allActionsMap.get('to-send-list')
    toSendList.data[id] = {
       id: id,
-      content: linkInput
+      content: linkInput.value
    }
 
-   createItem(toSendList.html, linkInput)
+   createItem(toSendList.html, linkInput.value)
    setLocalStorage(toSendList.key, toSendList.data)
+   linkInput.value = ''
 }
 
 function disabledEvents(list, all) {
